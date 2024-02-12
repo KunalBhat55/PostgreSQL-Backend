@@ -22,7 +22,3 @@ dbClient
   )
   .catch((err) => console.log(err));
 
-// await dbClient.query(
-//   `INSERT INTO capitals(id, country, capital)
-//    VALUES(2511, 'BHAT', 'KUNAL')`
-// );
