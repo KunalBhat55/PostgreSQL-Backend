@@ -15,5 +15,5 @@ const userTable = () => {
     .then(() => console.log("Table created successfully"))
     .catch(() => console.log("Error creating table:", err));
 };
-
+    
 export {userTable};

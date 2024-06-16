@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
   if (!username || !password) {
     return res
       .status(401)
-      .json({ message: "Username and password are Required!" });
+      .json({ message: "Username and password are Required!", data: null });
   }
 
   const user = await dbClient.query(
@@ -20,10 +20,10 @@ router.post("/login", async (req, res) => {
   );
 
   if (user.rows.length === 0) {
-    return res.status(404).json({ message: "User not found!" });
+    return res.status(404).json({ message: "User not found!", data: null });
   }
 
-  return res.status(200).json({ message: "logged in Successfully!" });
+  return res.status(200).json({ message: "logged in Successfully!", data: user.rows[0] });
 });
 
 router.post("/register", async (req, res) => {
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
   if (!username || !password) {
     return res
       .status(401)
-      .json({ message: "Usernname and password are Required!" });
+      .json({ message: "Username and password are Required!" });
   }
 
   const findUser = await dbClient.query(
@@ -50,7 +50,7 @@ router.post("/register", async (req, res) => {
 
   const user = await dbClient.query(insertQuery, values);
 
-  return res.status(200).json({ message: "Registered successfully" });
+  return res.status(200).json({ message: "Registered successfully", data: user.rows});
 });
 
 router.get("/secrets", authMiddleware, async (req, res) => {
